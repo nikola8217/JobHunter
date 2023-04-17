@@ -1,8 +1,60 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
+import CompanyList from '../../components/company/CompanyList';
+import { useDispatch, useSelector } from 'react-redux';
+import { listCompanies } from '../../redux/actions/companyActions';
 
 const Companies = () => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = () => {
+    // handle search
+  };
+
+  const handleSearchValueChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const dispatch = useDispatch();
+  const { loading, companies, error } = useSelector(state => state.companyList);
+
+  useEffect(() => {
+    dispatch(listCompanies());
+  }, [dispatch]);
+
   return (
-    <div>Companies</div>
+    <>
+      <Box sx={{ p: 2, marginBottom: '70px' }}>
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Search Company"
+              value={searchValue}
+              sx={{ background: "white" }}
+              onChange={handleSearchValueChange}
+              InputProps={{
+                endAdornment: <InputAdornment position="end"></InputAdornment>,
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Button variant="contained" color="primary" sx={{ height: "55px" }}>
+              Search
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+      <CompanyList companies={companies} loading={loading} error={error} />
+    </>
   )
 }
 

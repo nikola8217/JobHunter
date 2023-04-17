@@ -1,4 +1,4 @@
-const technologies = [
+const companies = [
     {
         name: 'StationArt',
         img: '/img/logo1.jpg',
@@ -18,7 +18,7 @@ const technologies = [
     },
     {
         name: 'TechGroup',
-        img: '/img/logo2.jfif',
+        img: '/img/logo4.jpg',
         about:  'TechGroup is a leading IT company specializing in software development, IT consulting, and digital transformation services.'+ 
                 'With over a decade of experience, we have helped organizations across industries and geographies harness the power of technology '+
                 'to drive growth and innovation.'+
@@ -37,7 +37,7 @@ const technologies = [
     },
     {
         name: 'Melon',
-        img: '/img/logo3.jpg',
+        img: '/img/logo5.jpg',
         about:  'Melon is a leading IT company that specializes in developing innovative software solutions for businesses of all sizes. ' +
                 'Founded in 2005, our company has quickly established itself as a reliable and trusted partner for our clients, delivering high-quality' +
                 'services and products that exceed their expectations.' +
@@ -58,7 +58,7 @@ const technologies = [
     },
     {
         name: 'ShockStar',
-        img: '/img/logo4.png',
+        img: '/img/logo2.png',
         about:  'ShockStar is a leading provider of software solutions for businesses of all sizes. With a team of experienced engineers and '+
                 'developers, we specialize in creating customized software solutions that meet the unique needs of each client. Our services include '+
                 'software development, database design and management, web and mobile application development, cloud computing, and more.'+
@@ -78,7 +78,7 @@ const technologies = [
     },
     {
         name: 'MonkeyMobile',
-        img: '/img/logo5.webp',
+        img: '/img/logo3.webp',
         about:  'MonkeyMobile is a leading technology firm specializing in software development, cloud computing, and data analytics. We have a ' +
                 'team of experienced professionals who are passionate about delivering innovative solutions to clients across various industries.  ' +
 
@@ -101,12 +101,12 @@ const technologies = [
         zip: 21101
     },
     {
-        name: 'MangoDev',
-        img: '/img/logo6.jfif',
-        about:  'MangoDev is an innovative IT company that specializes in cutting-edge software development, web design, and digital marketing '+
+        name: 'Victory',
+        img: '/img/logo6.png',
+        about:  'Victory is an innovative IT company that specializes in cutting-edge software development, web design, and digital marketing '+
                 'services. With over a decade of experience in the industry, we have earned a reputation for delivering high-quality solutions that meet the '+ 
                 'needs of our clients. Our team of highly skilled professionals are dedicated to delivering innovative solutions that drive business growth '+
-                'and ensure success. We pride ourselves on our commitment to quality, transparency, and customer satisfaction. At MangoDev, we are constantly '+
+                'and ensure success. We pride ourselves on our commitment to quality, transparency, and customer satisfaction. At Victory, we are constantly '+
                 'striving to push the boundaries of what is possible in the world of technology, and we look forward to working with you to help your business '+
                 'achieve its full potential.',
         address: 'Bulevar A 13134',
@@ -116,4 +116,4 @@ const technologies = [
     
 ]
 
-module.exports = technologies
+module.exports = companies

@@ -11,7 +11,7 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <Container sx={{ marginTop: '200px' }}>
+        <Container sx={{ marginTop: '150px' }}>
           <Routes>
             <Route path='/' element={<Jobs />} exact/>
             <Route path='/companies' element={<Companies />} />
