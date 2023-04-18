@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const listCompanies = () => async (dispatch) => {
+export const listCompanies = (name = '') => async (dispatch) => {
     try {
         dispatch({ type: 'COMPANY_LIST_REQUEST' });
 
-        const { data } = await axios.get('http://localhost:5000/api/companies');
+        const { data } = await axios.get(`http://localhost:5000/api/companies?name=${name}`);
 
         dispatch({
             type: 'COMPANY_LIST_SUCCESS',

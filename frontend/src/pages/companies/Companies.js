@@ -14,8 +14,8 @@ import { listCompanies } from '../../redux/actions/companyActions';
 const Companies = () => {
   const [searchValue, setSearchValue] = useState("");
 
-  const handleSearch = () => {
-    // handle search
+  const handleSearch = (name) => {
+    dispatch(listCompanies(name));
   };
 
   const handleSearchValueChange = (event) => {
@@ -47,7 +47,7 @@ const Companies = () => {
             />
           </Grid>
           <Grid item>
-            <Button variant="contained" color="primary" sx={{ height: "55px" }}>
+            <Button variant="contained" color="primary" sx={{ height: "55px" }} onClick={() => handleSearch(searchValue)}>
               Search
             </Button>
           </Grid>
