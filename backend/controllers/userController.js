@@ -4,6 +4,12 @@ const generateToken = require('../utils/generateToken')
 
 const authUser = asyncHandler( async (req, res) => {
     const { email, password } = req.body
+
+    if (email === '' || password === '') {
+        res.status(401)
+        throw new Error('You must fill in all fields!')
+    }
+
     const user = await User.findOne({email})
 
     if (user && (await user.matchPassword(password))) {

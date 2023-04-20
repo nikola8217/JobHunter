@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   AppBar,
   Button,
@@ -10,18 +10,41 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import DrawerComp from "./Drawer";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/actions/userActions";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [value, setValue] = useState();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+  let links = [];
 
-  const links = [
-    { to: "/", text: "Jobs" },
-    { to: "/companies", text: "Companies" },
-    { to: "/login", text: "Login" },
-    { to: "/register", text: "Register" },
-  ];
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const { userInfo: registered } = useSelector(state => state.userRegister);
+  const { userInfo: logged } = useSelector(state => state.userLogin);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
+  if (registered || logged) {
+    links = [
+      { to: "/", text: "Jobs" },
+      { to: "/companies", text: "Companies" },
+      { to: "/applications", text: "Applications" },
+      { to: "/", text: "Logout", onClick: handleLogout },
+    ];
+  } else {
+    links = [
+      { to: "/", text: "Jobs" },
+      { to: "/companies", text: "Companies" },
+      { to: "/login", text: "Login" },
+      { to: "/register", text: "Register" },
+    ];
+  }  
 
   return (
     <>
@@ -42,6 +65,7 @@ const Navbar = () => {
                         to={link.to}
                         style={{ textDecoration: "none", color: "inherit" }}
                         key={link.text}
+                        onClick={link.onClick}
                         >
                             <Button color="inherit">{link.text}</Button>
                         </Link>
