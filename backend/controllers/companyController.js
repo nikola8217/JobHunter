@@ -60,7 +60,7 @@ const createCompany = asyncHandler ( async (req, res) => {
 
     const company = new Company({
         name: name,
-        img: '/img/' + img,
+        img: img,
         about: about,
         address: address,
         city: city,

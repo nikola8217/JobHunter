@@ -47,8 +47,7 @@ const UsersForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateUser({ _id: id, name, email, isAdmin })).then(() => {
-  });
+    dispatch(updateUser({ _id: id, name, email, isAdmin }));
     
   };
 

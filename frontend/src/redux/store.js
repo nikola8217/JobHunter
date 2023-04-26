@@ -3,7 +3,10 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { 
     companyListReducer,
-    companyDetailsReducer
+    companyDetailsReducer,
+    companyDeleteReducer,
+    companyCreateReducer,
+    companyUpdateReducer
 } from './reducers/companyReducers';
 import { 
     userLoginReducer,
@@ -15,14 +18,17 @@ import {
 } from './reducers/userReducers';
 
 const reducer = combineReducers({
-    companyList: companyListReducer,
-    companyDetails: companyDetailsReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userList: userListReducer,
     userDelete: userDeleteReducer,
     userDetails: userDetailsReducer,
-    userUpdate: userUpdateReducer
+    userUpdate: userUpdateReducer,
+    companyList: companyListReducer,
+    companyDetails: companyDetailsReducer,
+    companyDelete: companyDeleteReducer,
+    companyCreate: companyCreateReducer,
+    companyUpdate: companyUpdateReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;

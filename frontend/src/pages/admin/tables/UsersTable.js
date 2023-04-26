@@ -1,42 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper, Typography, Button, Box } from "@mui/material";
-import useStyles from "../../../styles/styles";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { listUsers, deleteUser } from "../../../redux/actions/userActions";
+import useListTable from "../../../custom-hooks/useListTable";
 
 const UsersTable = () => {
-    const classes = useStyles();
-
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const { loading, users, error } = useSelector((state) => state.userList);
-    const { userInfo } = useSelector(state => state.userLogin);
-    const { success: successDelete } = useSelector(state => state.userDelete);
-
-    useEffect(() => {
-        // alert(1);
-        if (userInfo.isAdmin) {
-            dispatch(listUsers());
-        } else {
-            navigate('/');
-        }
-    }, [userInfo, dispatch, navigate]);
-
-    const rows = users?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    const {
+        classes,
+        page,
+        rowsPerPage,
+        handleChangePage,
+        handleChangeRowsPerPage,
+        dispatch,
+        navigate,
+        loading,
+        data,
+        error,
+        rows
+    } = useListTable(listUsers, deleteUser, state => state.userList, state => state.userDelete);
 
     const handleEdit = (id) => {
         dispatch({ type: 'USER_UPDATE_RESET' });
@@ -60,7 +40,6 @@ const UsersTable = () => {
                 <>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                         <Typography variant="h5" sx={{ textAlign: 'left' }}>Users</Typography>
-                        {/* <Button variant="contained" color="success" sx={{ textAlign: 'right' }} onClick={() => handleCreate()}>Add new user</Button> */}
                     </Box>
                     <Box sx={{ marginBottom: '100px' }}>
                         <TableContainer component={Paper}>
@@ -97,7 +76,7 @@ const UsersTable = () => {
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25]}
                             component="div"
-                            count={users?.length}
+                            count={data?.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             onPageChange={handleChangePage}

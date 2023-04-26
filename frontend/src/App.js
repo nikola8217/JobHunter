@@ -11,6 +11,7 @@ import Register from './pages/auth/Register';
 import UsersTable from './pages/admin/tables/UsersTable';
 import UsersForm from './pages/admin/forms/UsersForm';
 import CompaniesTable from './pages/admin/tables/CompaniesTable';
+import CompanyForm from './pages/admin/forms/CompanyForm';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path='/users' element={<UsersTable />} />
             <Route path='/usersForm/:id' element={<UsersForm />} />
             <Route path='/companiesAdmin' element={<CompaniesTable />} />
+            <Route path='/companyForm/:id?' element={<CompanyForm />} />
           </Routes>
         </Container>
       </Router>

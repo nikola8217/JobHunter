@@ -23,7 +23,7 @@ const Companies = () => {
   };
 
   const dispatch = useDispatch();
-  const { loading, companies, error } = useSelector(state => state.companyList);
+  const { loading, data, error } = useSelector(state => state.companyList);
 
   useEffect(() => {
     dispatch(listCompanies());
@@ -53,7 +53,7 @@ const Companies = () => {
           </Grid>
         </Grid>
       </Box>
-      <CompanyList companies={companies} loading={loading} error={error} />
+      <CompanyList companies={data} loading={loading} error={error} />
     </>
   )
 }
