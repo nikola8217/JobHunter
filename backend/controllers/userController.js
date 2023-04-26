@@ -109,23 +109,36 @@ const getUserByID = asyncHandler ( async (req, res) => {
 
 const updateUser = asyncHandler ( async (req, res) => {
     const user = await User.findById(req.params.id)
+    const { name, email, isAdmin } = req.body;
 
+    if (!name || !email) {
+        res.status(400);
+        throw new Error('You must fill in all fields!');
+    }
+    
+    const emailExists = await User.findOne({ _id: {$ne: user._id}, email });
+    
+    if (emailExists) {
+        res.status(400);
+        throw new Error('Email is already taken!');
+    }
+    
     if (user) {
-        user.name = req.body.name || user.name
-        user.email = req.body.email || user.email
-        user.isAdmin = req.body.isAdmin
-
-        const updateUser = await user.save()
-
+        user.name = name || user.name;
+        user.email = email || user.email;
+        user.isAdmin = isAdmin;
+    
+        const updatedUser = await user.save();
+    
         res.json({
-            _id: updateUser._id,
-            name: updateUser.name,
-            email: updateUser.email,
-            isAdmin: updateUser.isAdmin
-        })
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin
+        });
     } else {
-        res.status(404)
-        throw new Error('User not found!')
+        res.status(404);
+        throw new Error('User not found!');
     }
 })
 

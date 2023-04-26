@@ -15,7 +15,9 @@ const Login = () => {
   const { loading, userInfo, error } = useSelector(state => state.userLogin);
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && userInfo.isAdmin) {
+      navigate('/users');
+    } else if (userInfo) {
       navigate('/');
     }
   }, [navigate, userInfo]);

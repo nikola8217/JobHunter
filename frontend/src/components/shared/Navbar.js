@@ -30,7 +30,17 @@ const Navbar = () => {
     navigate('/');
   };
 
-  if (registered || logged) {
+  if (logged && logged.isAdmin) {
+    links = [
+      { to: "/users", text: "Users" },
+      { to: "/companiesAdmin", text: "Companies" },
+      // { to: "/technologies", text: "Technologies" },
+      // { to: "/levels", text: "Levels" },
+      // { to: "/jobs", text: "Jobs" },
+      { to: "/", text: "Logout", onClick: handleLogout },
+    ];
+  }
+  else if (registered || logged) {
     links = [
       { to: "/", text: "Jobs" },
       { to: "/companies", text: "Companies" },
@@ -59,7 +69,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
-                <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end", marginRight: "200px" }}>
+                <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end", marginRight: "100px" }}>
                     {links.map((link) => (
                         <Link
                         to={link.to}

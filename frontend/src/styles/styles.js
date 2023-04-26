@@ -30,6 +30,34 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '30%',
     // margin: 'auto',
   },
+  tableHeader: {
+    backgroundColor: '#1976d2',
+  },
+  formRoot: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '100%',
+    },
+    '& .MuiButtonBase-root': {
+      margin: theme.spacing(2),
+    },
+  },
+  formTitle: {
+    textAlign: 'center',
+    marginBottom: '20px'
+  },
+  formBox: {
+    backgroundColor: theme.palette.common.white,
+    padding: theme.spacing(3),
+    maxWidth: 800,
+    margin: '0 auto',
+    borderRadius: '10px'
+  },
+ 
 }));
 
 export default useStyles;

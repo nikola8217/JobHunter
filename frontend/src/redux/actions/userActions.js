@@ -58,3 +58,119 @@ export const register = (name, email, password) => async (dispatch) => {
         });
     }
 };
+
+export const listUsers = () => async (dispatch, getState) => {
+    try {
+        dispatch({ type: 'USER_LIST_REQUEST' });
+
+        const {
+            userLogin: { userInfo }
+        } = getState();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        };
+
+        const { data } = await axios.get('http://localhost:5000/api/users', config);
+
+        dispatch({
+            type: 'USER_LIST_SUCCESS',
+            payload: data
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: 'USER_LIST_FAIL',
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        });
+    }
+};
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: 'USER_DELETE_REQUEST' });
+
+        const {
+            userLogin: { userInfo }
+        } = getState();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        };
+
+        const { data } = await axios.delete(`http://localhost:5000/api/users/${id}`, config);
+
+        dispatch({
+            type: 'USER_DELETE_SUCCESS',
+            payload: data
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: 'USER_DELETE_FAIL',
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        });
+    }
+};
+
+export const getUserById = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: 'USER_DETAILS_REQUEST' });
+
+        const {
+            userLogin: { userInfo }
+        } = getState();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        };
+
+        const { data } = await axios.get(`http://localhost:5000/api/users/${id}`, config);
+
+        dispatch({
+            type: 'USER_DETAILS_SUCCESS',
+            payload: data
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: 'USER_DETAILS_FAIL',
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        });
+    }
+};
+
+export const updateUser = (user) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: 'USER_UPDATE_REQUEST' });
+
+        const {
+            userLogin: { userInfo }
+        } = getState();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        };
+
+        const { data } = await axios.put(`http://localhost:5000/api/users/${user._id}`, user, config);
+
+        dispatch({
+            type: 'USER_UPDATE_SUCCESS',
+            payload: data
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: 'USER_UPDATE_FAIL',
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        });
+    }
+};
