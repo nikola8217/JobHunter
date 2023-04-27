@@ -12,6 +12,10 @@ import UsersTable from './pages/admin/tables/UsersTable';
 import UsersForm from './pages/admin/forms/UsersForm';
 import CompaniesTable from './pages/admin/tables/CompaniesTable';
 import CompanyForm from './pages/admin/forms/CompanyForm';
+import TechnologiesTable from './pages/admin/tables/TechnologiesTable';
+import TechnologyForm from './pages/admin/forms/TechnologyForm';
+import LevelsTable from './pages/admin/tables/LevelsTable';
+import LevelForm from './pages/admin/forms/LevelForm';
 
 
 function App() {
@@ -32,6 +36,10 @@ function App() {
             <Route path='/usersForm/:id' element={<UsersForm />} />
             <Route path='/companiesAdmin' element={<CompaniesTable />} />
             <Route path='/companyForm/:id?' element={<CompanyForm />} />
+            <Route path='/technologies' element={<TechnologiesTable />} />
+            <Route path='/technologyForm/:id?' element={<TechnologyForm />} />
+            <Route path='/levels' element={<LevelsTable />} />
+            <Route path='/levelForm/:id?' element={<LevelForm />} />
           </Routes>
         </Container>
       </Router>

@@ -34,8 +34,8 @@ const Navbar = () => {
     links = [
       { to: "/users", text: "Users" },
       { to: "/companiesAdmin", text: "Companies" },
-      // { to: "/technologies", text: "Technologies" },
-      // { to: "/levels", text: "Levels" },
+      { to: "/technologies", text: "Technologies" },
+      { to: "/levels", text: "Levels" },
       // { to: "/jobs", text: "Jobs" },
       { to: "/", text: "Logout", onClick: handleLogout },
     ];

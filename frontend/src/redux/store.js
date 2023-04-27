@@ -16,6 +16,20 @@ import {
     userDetailsReducer,
     userUpdateReducer
 } from './reducers/userReducers';
+import { 
+    technologyListReducer,
+    technologyDetailsReducer,
+    technologyDeleteReducer,
+    technologyCreateReducer,
+    technologyUpdateReducer
+} from './reducers/technologiesReducers';
+import { 
+    levelListReducer,
+    levelDetailsReducer,
+    levelDeleteReducer,
+    levelCreateReducer,
+    levelUpdateReducer 
+} from './reducers/levelReducers';
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -28,7 +42,17 @@ const reducer = combineReducers({
     companyDetails: companyDetailsReducer,
     companyDelete: companyDeleteReducer,
     companyCreate: companyCreateReducer,
-    companyUpdate: companyUpdateReducer
+    companyUpdate: companyUpdateReducer,
+    technologyDetails: technologyDetailsReducer,
+    technologyList: technologyListReducer,
+    technologyDelete: technologyDeleteReducer,
+    technologyCreate: technologyCreateReducer,
+    technologyUpdate: technologyUpdateReducer,
+    levelDetails: levelDetailsReducer,
+    levelList: levelListReducer,
+    levelDelete: levelDeleteReducer,
+    levelCreate: levelCreateReducer,
+    levelUpdate: levelUpdateReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;

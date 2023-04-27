@@ -50,7 +50,7 @@ const updateLevel = asyncHandler ( async (req, res) => {
         throw new Error('You must fill in all fields!')
     }
 
-    const levelExists = await Level.findOne({ _id: {$ne: _id}, name })
+    const levelExists = await Level.findOne({ _id: {$ne: level._id}, name })
 
     if (levelExists) {
         res.status(400)
