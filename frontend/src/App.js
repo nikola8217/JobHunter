@@ -6,6 +6,7 @@ import Navbar from './components/shared/Navbar';
 import Companies from './pages/companies/Companies';
 import CompanyDetails from './pages/companies/CompanyDetails';
 import Jobs from './pages/jobs/Jobs';
+import JobDetails from './pages/jobs/JobDetails';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import UsersTable from './pages/admin/tables/UsersTable';
@@ -29,6 +30,7 @@ function App() {
         <Container sx={{ marginTop: '150px' }}>
           <Routes>
             <Route path='/' element={<Jobs />} exact/>
+            <Route path='/jobs/:id?' element={<JobDetails />} />
             <Route path='/companies' element={<Companies />} />
             <Route path='/companies/:id' element={<CompanyDetails />} />
             <Route path='/login' element={<Login />} />
