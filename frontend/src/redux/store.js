@@ -30,6 +30,13 @@ import {
     levelCreateReducer,
     levelUpdateReducer 
 } from './reducers/levelReducers';
+import {
+    jobListReducer,
+    jobDetailsReducer,
+    jobDeleteReducer,
+    jobCreateReducer,
+    jobUpdateReducer
+} from './reducers/jobReducers';
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -52,7 +59,12 @@ const reducer = combineReducers({
     levelList: levelListReducer,
     levelDelete: levelDeleteReducer,
     levelCreate: levelCreateReducer,
-    levelUpdate: levelUpdateReducer
+    levelUpdate: levelUpdateReducer,
+    jobList: jobListReducer,
+    jobDetails: jobDetailsReducer,
+    jobDelete: jobDeleteReducer,
+    jobCreate: jobCreateReducer,
+    jobUpdate: jobUpdateReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;

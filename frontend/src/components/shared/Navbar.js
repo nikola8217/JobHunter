@@ -36,7 +36,7 @@ const Navbar = () => {
       { to: "/companiesAdmin", text: "Companies" },
       { to: "/technologies", text: "Technologies" },
       { to: "/levels", text: "Levels" },
-      // { to: "/jobs", text: "Jobs" },
+      { to: "/jobsAdmin", text: "Jobs" },
       { to: "/", text: "Logout", onClick: handleLogout },
     ];
   }
