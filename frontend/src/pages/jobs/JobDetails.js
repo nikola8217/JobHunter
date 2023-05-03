@@ -25,11 +25,16 @@ const JobDetails = () => {
     }, [dispatch, id, userInfo]);
 
     useEffect(() => {
-        if (application !== null) {
-            setApply(<Alert severity="success">Already applied</Alert>)
+        if (userInfo) {
+            if (application !== null) {
+                setApply(<Alert severity="success">Already applied</Alert>)
+            } else {
+                setApply(<Button variant='contained' color='primary' onClick={() => handleNavigate()}>Apply</Button>)
+            }
         } else {
             setApply(<Button variant='contained' color='primary' onClick={() => handleNavigate()}>Apply</Button>)
         }
+        
     }, [application])
 
     const handleNavigate = () => {
