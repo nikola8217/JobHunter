@@ -3,15 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getCompanyById } from '../../redux/actions/companyActions';
 import { Typography, Box } from '@mui/material';
+import { listJobs } from '../../redux/actions/jobActions';
+import JobList from '../../components/job/JobList';
 
 const CompanyDetails = () => {
 
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { loading, company, error } = useSelector(state => state.companyDetails)
+    const { loading, company, error } = useSelector(state => state.companyDetails);
+    const { loading: jobLoading, data, error: jobError } = useSelector(state => state.jobList);
 
     useEffect(() => {
         dispatch(getCompanyById(id));
+        dispatch(listJobs(id));
     }, [dispatch, id])
 
     return (
@@ -28,9 +32,13 @@ const CompanyDetails = () => {
                     <Typography variant='h4' sx={{ marginBottom: '50px' }}>
                         About us
                     </Typography>
-                    <Typography variant='h6'>
+                    <Typography variant='h6' sx={{ marginBottom: '70px' }}>
                         {company.about}
                     </Typography>
+                    <Typography variant='h4' sx={{ marginBottom: '50px' }}>
+                        Jobs
+                    </Typography>
+                   <JobList jobs={data} loading={jobLoading} error={jobError} /> 
                 </>
                 
 

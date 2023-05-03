@@ -83,7 +83,7 @@ const JobsForm = () => {
         loading ? <Typography variant="h6" textAlign={'center'}>Loading...</Typography> :
         error ? <Typography variant="h6" color={ 'red' }>{error}</Typography> :
         
-        <Box className={classes.formBox}>
+        <Box className={classes.formBox} style={{ marginBottom: '50px' }}>
           <Typography variant="h5" className={classes.formTitle} style={{ marginBottom: '20px' }}>
             {id ? 'Edit job' : 'Add new job'}
           </Typography>

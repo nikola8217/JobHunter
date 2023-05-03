@@ -24,7 +24,7 @@ const JobList = (props) => {
             {
                 props.loading ? <Typography variant='h6' sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</Typography> :
                 props.error ? <Typography variant='h6' color={'red'} sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{props.error}</Typography> :
-                props.jobs.length < 1 ? <Typography variant='h6' sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Jobs</Typography> :
+                props.jobs.length < 1 ? <Typography variant='h6' sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>No jobs</Typography> :
                 <>
                     <Grid container spacing={2}>
                         {selectedJobs.map((job) => (

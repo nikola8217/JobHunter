@@ -11,6 +11,7 @@ import { listCompanies } from '../../redux/actions/companyActions';
 import { listTechnologies } from '../../redux/actions/technologyActions';
 import { listLevels } from '../../redux/actions/levelActions';
 import JobList from '../../components/job/JobList';
+import { useNavigate } from 'react-router-dom';
 
 
 const Jobs = () => {
@@ -18,19 +19,26 @@ const Jobs = () => {
   const [technology, setTechnology] = useState("");
   const [level, setLevel] = useState("");
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, data: jobs, error } = useSelector(state => state.jobList);
   const { data: companies } = useSelector(state => state.companyList);
   const { data: technologies } = useSelector(state => state.technologyList);
   const { data: levels } = useSelector(state => state.levelList);
+  const { userInfo } = useSelector(state => state.userLogin);
   
 
   useEffect(() => {
-    dispatch(listCompanies())
-    dispatch(listTechnologies());
-    dispatch(listLevels());
-    dispatch(listJobs());
-  }, [dispatch]);
+    if (userInfo && userInfo.isAdmin) {
+      navigate('/users');
+    } else {
+      dispatch(listCompanies())
+      dispatch(listTechnologies());
+      dispatch(listLevels());
+      dispatch(listJobs(company, technology, level));
+    }
+    
+  }, [dispatch, company, technology, level, userInfo]);
 
   return (
     <>
@@ -85,7 +93,6 @@ const Jobs = () => {
         </Select>
       </Box>
       <JobList jobs={jobs} loading={loading} error={error} />
-      {/* <CompanyList companies={data} loading={loading} error={error} /> */}
     </>
   )
 }

@@ -19,6 +19,8 @@ import LevelsTable from './pages/admin/tables/LevelsTable';
 import LevelForm from './pages/admin/forms/LevelForm';
 import JobsTable from './pages/admin/tables/JobsTable';
 import JobsForm from './pages/admin/forms/JobsForm';
+import Application from './pages/applications/Application';
+import MyApplications from './pages/applications/MyApplications';
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
             <Route path='/companies/:id' element={<CompanyDetails />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register/>} />
+            <Route path='/application/:id' element={<Application />} />
+            <Route path='/applications' element={<MyApplications />} />
             {/* ADMIN */}
             <Route path='/users' element={<UsersTable />} />
             <Route path='/usersForm/:id' element={<UsersForm />} />

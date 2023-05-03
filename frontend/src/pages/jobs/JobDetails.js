@@ -1,19 +1,23 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getJobById } from '../../redux/actions/jobActions';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 
 const JobDetails = () => {
 
     const { id } = useParams();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { loading, job, error } = useSelector(state => state.jobDetails)
 
     useEffect(() => {
         dispatch(getJobById(id));
-        console.log(loading, job, error)
     }, [dispatch, id]);
+
+    const handleNavigate = () => {
+        navigate(`/application/${id}`);
+    };
 
     return (
         <>
@@ -35,9 +39,13 @@ const JobDetails = () => {
                     <Typography variant='h4' sx={{ marginBottom: '50px' }}>
                         Requirements
                     </Typography>
-                    <Typography variant='h6'>
+                    <Typography variant='h6' sx={{ marginBottom: '90px' }}>
                         {job?.requirements}
                     </Typography>
+                    <Box sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '50px' }}>
+                        <Button variant='contained' color='primary' onClick={() => handleNavigate()}>Apply</Button>
+                    </Box>
+                    
                 </>
                 
 

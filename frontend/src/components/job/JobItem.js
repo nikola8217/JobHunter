@@ -21,7 +21,7 @@ const JobItem = (props) => {
         <Grid item lg={12}>
             <Card>
                 <CardContent>
-                    <Typography gutterBottom variant="h4" mb={1}>
+                    <Typography gutterBottom variant="h5" mb={1}>
                         {props.job.name}
                     </Typography>
                     <Typography gutterBottom variant="h6" mb={5}>
