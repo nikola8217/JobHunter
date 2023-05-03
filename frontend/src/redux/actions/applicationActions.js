@@ -31,3 +31,32 @@ export const apply = (application) => async (dispatch, getState) => {
         });
     }
 };
+
+export const checkApplication = (userId, job) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: 'APPLICATION_DETAILS_REQUEST' });
+
+        const {
+            userLogin: { userInfo }
+        } = getState();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        };
+
+        const { data } = await axios.get(`http://localhost:5000/api/applications?user=${userId}&job=${job}`, config);
+
+        dispatch({
+            type: 'APPLICATION_DETAILS_SUCCESS',
+            payload: data
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: 'APPLICATION_DETAILS_FAIL',
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        });
+    }
+};

@@ -7,12 +7,20 @@ import {
     Button
   } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
+import { checkApplication } from '../../redux/actions/applicationActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const JobItem = (props) => {
 
+  const { userInfo } = useSelector(state => state.userLogin);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleNav = (id) => {
+    if (userInfo) {
+      dispatch(checkApplication(userInfo._id, id));
+    }
     navigate(`/jobs/${id}`);
   };
 

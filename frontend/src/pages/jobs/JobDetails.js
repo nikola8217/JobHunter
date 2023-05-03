@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getJobById } from '../../redux/actions/jobActions';
-import { Typography, Box, Button } from '@mui/material';
+import { Typography, Box, Button, Alert } from '@mui/material';
+import { checkApplication } from '../../redux/actions/applicationActions';
 
 const JobDetails = () => {
 
@@ -10,10 +11,26 @@ const JobDetails = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { loading, job, error } = useSelector(state => state.jobDetails)
+    const { userInfo } = useSelector(state => state.userLogin);
+    const { application } = useSelector(state => state.applicationCheck);
+    const [apply, setApply] = useState(<Button variant='contained' color='primary' onClick={() => handleNavigate()}>Apply</Button>);
+
 
     useEffect(() => {
         dispatch(getJobById(id));
-    }, [dispatch, id]);
+
+        if (userInfo) {
+            dispatch(checkApplication(userInfo._id, id))   
+        }
+    }, [dispatch, id, userInfo]);
+
+    useEffect(() => {
+        if (application !== null) {
+            setApply(<Alert severity="success">Already applied</Alert>)
+        } else {
+            setApply(<Button variant='contained' color='primary' onClick={() => handleNavigate()}>Apply</Button>)
+        }
+    }, [application])
 
     const handleNavigate = () => {
         navigate(`/application/${id}`);
@@ -43,7 +60,7 @@ const JobDetails = () => {
                         {job?.requirements}
                     </Typography>
                     <Box sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '50px' }}>
-                        <Button variant='contained' color='primary' onClick={() => handleNavigate()}>Apply</Button>
+                        {apply}
                     </Box>
                     
                 </>

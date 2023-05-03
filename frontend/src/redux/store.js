@@ -38,7 +38,8 @@ import {
     jobUpdateReducer
 } from './reducers/jobReducers';
 import {
-    applicationCreateReducer
+    applicationCreateReducer,
+    applicationDetailsReducer
 } from './reducers/applicationReducers';
 
 const reducer = combineReducers({
@@ -69,6 +70,7 @@ const reducer = combineReducers({
     jobCreate: jobCreateReducer,
     jobUpdate: jobUpdateReducer,
     applicationCreate: applicationCreateReducer,
+    applicationCheck: applicationDetailsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
