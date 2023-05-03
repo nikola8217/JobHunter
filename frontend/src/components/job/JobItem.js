@@ -26,7 +26,7 @@ const JobItem = (props) => {
 
   return (
     <>
-        <Grid item lg={12}>
+        <Grid item sm={12}>
             <Card>
                 <CardContent>
                     <Typography gutterBottom variant="h5" mb={1}>

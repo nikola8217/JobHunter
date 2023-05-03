@@ -27,3 +27,16 @@ export const applicationDetailsReducer = (state = { application: {} }, action) =
             return state;
     }
 };
+
+export const applicationListReducer = (state = { data: [] }, action) => {
+    switch (action.type) {
+        case 'APPLICATION_LIST_REQUEST':
+            return { loading: true, data: [] };
+        case 'APPLICATION_LIST_SUCCESS':
+            return { loading: false, data: action.payload };
+        case 'APPLICATION_LIST_FAIL':
+            return { loading: false, error: action.payload };
+        default: 
+            return state;
+    }
+};
