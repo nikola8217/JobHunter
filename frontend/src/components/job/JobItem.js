@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const JobItem = (props) => {
 
   const { userInfo } = useSelector(state => state.userLogin);
+  // const { userInfo: register } = useSelector(state => state.userRegister);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

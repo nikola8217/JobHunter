@@ -22,15 +22,15 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { userInfo: registered } = useSelector(state => state.userRegister);
-  const { userInfo: logged } = useSelector(state => state.userLogin);
+  // const { userInfo: registered } = useSelector(state => state.userRegister);
+  const { userInfo } = useSelector(state => state.userLogin);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate('/');
   };
 
-  if (logged && logged.isAdmin) {
+  if (userInfo && userInfo.isAdmin) {
     links = [
       { to: "/users", text: "Users" },
       { to: "/companiesAdmin", text: "Companies" },
@@ -40,7 +40,7 @@ const Navbar = () => {
       { to: "/", text: "Logout", onClick: handleLogout },
     ];
   }
-  else if (registered || logged) {
+  else if (userInfo) {
     links = [
       { to: "/", text: "Jobs" },
       { to: "/companies", text: "Companies" },

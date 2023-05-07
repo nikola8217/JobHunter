@@ -12,6 +12,7 @@ const JobDetails = () => {
     const dispatch = useDispatch();
     const { loading, job, error } = useSelector(state => state.jobDetails)
     const { userInfo } = useSelector(state => state.userLogin);
+    // const { userInfo: register } = useSelector(state => state.userRegister);
     const { application } = useSelector(state => state.applicationCheck);
     const [apply, setApply] = useState(<Button variant='contained' color='primary' onClick={() => handleNavigate()}>Apply</Button>);
 

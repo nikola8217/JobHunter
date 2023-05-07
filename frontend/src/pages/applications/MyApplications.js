@@ -10,19 +10,19 @@ const MyApplications = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, data, error } = useSelector(state => state.applicationList);
-  const { userInfo: login } = useSelector(state => state.userLogin);
-  const { userInfo: register } = useSelector(state => state.userRegister);
+  const { userInfo } = useSelector(state => state.userLogin);
+  // const { userInfo: register } = useSelector(state => state.userRegister);
   const [id, setId] = useState('');
 
   useEffect(() => {
-    if (!login && !register) {
+    if (!userInfo) {
       navigate('/');
-    } else if (login && login.isAdmin) {
+    } else if (userInfo && userInfo.isAdmin) {
       navigate('/users');
     } else {
-      dispatch(listApplication(login ? login._id : register._id));
+      dispatch(listApplication(userInfo._id));
     }
-  }, [dispatch, navigate, login, register]);
+  }, [dispatch, navigate, userInfo]);
 
   return (
     <>

@@ -22,6 +22,7 @@ const Application = () => {
 
     const dispatch = useDispatch();
     const { userInfo } = useSelector(state => state.userLogin);
+    // const { userInfo: register } = useSelector(state => state.userRegister);
     const { loading, user, error } = useSelector(state => state.userDetails);
     const { job } = useSelector(state => state.jobDetails);
     const { loading: applyLoading, success } = useSelector(state => state.applicationCreate);

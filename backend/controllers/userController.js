@@ -27,11 +27,16 @@ const authUser = asyncHandler( async (req, res) => {
 })
 
 const registerUser = asyncHandler( async (req, res) => {
-    const { name, email, password } = req.body
+    const { name, email, password, passConfirm } = req.body
 
-    if (name === '' || email === '' || password === '') {
+    if (name === '' || email === '' || password === '' || passConfirm === '') {
         res.status(400)
         throw new Error('You must fill in all fields')
+    }
+
+    if (password !== passConfirm) {
+        res.status(400)
+        throw new Error("Passwords doesn't matches")
     }
 
     const userExists = await User.findOne({email})

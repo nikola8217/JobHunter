@@ -12,31 +12,36 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [passConfirm, setPassConfirm] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, userInfo, error } = useSelector(state => state.userRegister);
+  const { loading, success, error } = useSelector(state => state.userRegister);
+  const { userInfo } = useSelector(state => state.userLogin);
 
   useEffect(() => {
     if (userInfo) {
       navigate('/');
+    } else {
+      if (success) {
+        setSuccessMessage('You successfully created account! You will be redirected to login page in a second!');
+        setTimeout(() => {
+            dispatch({ type: 'USER_REGISTER_RESET' });
+            navigate('/login');
+        }, 1000);
+      }
     }
-  }, [navigate, userInfo]);
+  }, [navigate, userInfo, success]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (password !== passConfirm) {
-      setPasswordError("Passwords doesn't matches!");
-      return;
-    }
-
-    dispatch(register(name, email, password));
+    dispatch(register(name, email, password, passConfirm));
 
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ marginBottom: '50px' }}>
       <Typography variant="h5" className={classes.title} sx={{ 
         marginBottom: '30px'
        }}>
@@ -44,7 +49,7 @@ const Register = () => {
       </Typography>
       {loading && <Typography variant='p' mb={3}>Loading...</Typography>}
       {error && <Typography variant='p' mb={3} color={'red'}>{error}</Typography>}
-      {passwordError && !error && <Typography variant='p' mb={3} color={'red'}>{passwordError}</Typography>}
+      {successMessage && <Typography variant='p' mb={3} color={'green'} textAlign={'center'}>{successMessage}</Typography>}
       <form className={classes.form} onSubmit={handleSubmit}>
         <TextField
           id="name"
