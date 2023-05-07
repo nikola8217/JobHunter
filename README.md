@@ -33,7 +33,7 @@ Index page:
 
 ## Demo
 
-[Demo](https://jobhunter12.herokuapp.com/)
+You can see live preview [here](https://jobhunter12.herokuapp.com/).
 
 
 
