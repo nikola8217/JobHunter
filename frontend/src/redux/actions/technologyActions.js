@@ -1,10 +1,11 @@
 import axios from 'axios';
+import baseURL from '../config';
 
 export const listTechnologies = (name = '') => async (dispatch, getState) => {
     try {
         dispatch({ type: 'TECHNOLOGY_LIST_REQUEST' });
 
-        const { data } = await axios.get(`http://localhost:5000/api/technologies?name=${name}`);
+        const { data } = await axios.get(`${baseURL}/technologies?name=${name}`);
 
         dispatch({
             type: 'TECHNOLOGY_LIST_SUCCESS',
@@ -33,7 +34,7 @@ export const getTechnologyById = (id) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.get(`http://localhost:5000/api/technologies/${id}`, config);
+        const { data } = await axios.get(`${baseURL}/technologies/${id}`, config);
 
         dispatch({
             type: 'TECHNOLOGY_DETAILS_SUCCESS',
@@ -62,7 +63,7 @@ export const deleteTechnology = (id) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.delete(`http://localhost:5000/api/technologies/${id}`, config);
+        const { data } = await axios.delete(`${baseURL}/technologies/${id}`, config);
 
         dispatch({
             type: 'TECHNOLOGY_DELETE_SUCCESS',
@@ -92,7 +93,7 @@ export const createTechnology = (technology) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.post('http://localhost:5000/api/technologies', technology, config);
+        const { data } = await axios.post(`${baseURL}/technologies`, technology, config);
 
         dispatch({
             type: 'TECHNOLOGY_CREATE_SUCCESS',
@@ -123,7 +124,7 @@ export const updateTechnology = (technology) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.put(`http://localhost:5000/api/technologies/${technology._id}`, technology, config);
+        const { data } = await axios.put(`${baseURL}/technologies/${technology._id}`, technology, config);
 
         dispatch({
             type: 'TECHNOLOGY_UPDATE_SUCCESS',

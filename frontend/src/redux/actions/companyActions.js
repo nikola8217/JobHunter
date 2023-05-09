@@ -1,10 +1,11 @@
 import axios from 'axios';
+import baseURL from '../config';
 
 export const listCompanies = (name = '') => async (dispatch) => {
     try {
         dispatch({ type: 'COMPANY_LIST_REQUEST' });
 
-        const { data } = await axios.get(`http://localhost:5000/api/companies?name=${name}`);
+        const { data } = await axios.get(`${baseURL}/companies?name=${name}`);
 
         dispatch({
             type: 'COMPANY_LIST_SUCCESS',
@@ -23,7 +24,7 @@ export const getCompanyById = (id) => async (dispatch) => {
     try {
         dispatch({ type: 'COMPANY_DETAILS_REQUEST' });
 
-        const { data } = await axios.get(`http://localhost:5000/api/companies/${id}`);
+        const { data } = await axios.get(`${baseURL}/companies/${id}`);
 
         dispatch({
             type: 'COMPANY_DETAILS_SUCCESS',
@@ -52,7 +53,7 @@ export const deleteCompany = (id) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.delete(`http://localhost:5000/api/companies/${id}`, config);
+        const { data } = await axios.delete(`${baseURL}/companies/${id}`, config);
 
         dispatch({
             type: 'COMPANY_DELETE_SUCCESS',
@@ -82,7 +83,7 @@ export const createCompany = (company) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.post('http://localhost:5000/api/companies', company, config);
+        const { data } = await axios.post(`${baseURL}/companies`, company, config);
 
         dispatch({
             type: 'COMPANY_CREATE_SUCCESS',
@@ -113,7 +114,7 @@ export const updateCompany = (company) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.put(`http://localhost:5000/api/companies/${company._id}`, company, config);
+        const { data } = await axios.put(`${baseURL}/companies/${company._id}`, company, config);
 
         dispatch({
             type: 'COMPANY_UPDATE_SUCCESS',

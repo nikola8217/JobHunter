@@ -9,7 +9,7 @@ Web application for applying for IT job ads. Created with React, React Hooks, Re
 Authorization (with JWT):
 
 1. Register,
-2. Logout,
+2. Login,
 3. Logout
 
 When you are logged in as a user, you can:
@@ -20,10 +20,10 @@ When you are logged in as a user, you can:
 When you are logged in as admin, you can:
 
 1. Users - list, get details, update (change user role to Admin, among other things) and delete,
-2. Companies - list, get details, update, delete,
-3. Technologies - list, get details, update, delete,
-4. Level - list, get details, update, delete,
-5. Jobs - list, get details, update, delete
+2. Companies - create, list, get details, update, delete,
+3. Technologies - create, list, get details, update, delete,
+4. Level - create, list, get details, update, delete,
+5. Jobs - create, list, get details, update, delete
 
 ## Preview
 

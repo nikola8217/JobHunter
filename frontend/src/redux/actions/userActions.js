@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseURL from '../config';
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -10,7 +11,7 @@ export const login = (email, password) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.post('http://localhost:5000/api/users/login', {email, password}, config);
+        const { data } = await axios.post(`${baseURL}/users/login`, {email, password}, config);
 
         dispatch({
             type: 'USER_LOGIN_SUCCESS',
@@ -42,7 +43,7 @@ export const register = (name, email, password, passConfirm) => async (dispatch)
             }
         };
 
-        const { data } = await axios.post('http://localhost:5000/api/users', {name, email, password, passConfirm}, config);
+        const { data } = await axios.post(`${baseURL}/users`, {name, email, password, passConfirm}, config);
 
         dispatch({
             type: 'USER_REGISTER_SUCCESS',
@@ -73,7 +74,7 @@ export const listUsers = () => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.get('http://localhost:5000/api/users', config);
+        const { data } = await axios.get(`${baseURL}/users`, config);
 
         dispatch({
             type: 'USER_LIST_SUCCESS',
@@ -102,7 +103,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.delete(`http://localhost:5000/api/users/${id}`, config);
+        const { data } = await axios.delete(`${baseURL}/users/${id}`, config);
 
         dispatch({
             type: 'USER_DELETE_SUCCESS',
@@ -131,7 +132,7 @@ export const getUserById = (id) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.get(`http://localhost:5000/api/users/${id}`, config);
+        const { data } = await axios.get(`${baseURL}/users/${id}`, config);
 
         dispatch({
             type: 'USER_DETAILS_SUCCESS',
@@ -160,7 +161,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.put(`http://localhost:5000/api/users/${user._id}`, user, config);
+        const { data } = await axios.put(`${baseURL}/users/${user._id}`, user, config);
 
         dispatch({
             type: 'USER_UPDATE_SUCCESS',

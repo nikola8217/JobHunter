@@ -1,4 +1,5 @@
 import axios from "axios";
+import baseURL from "../config";
 
 export const apply = (application) => async (dispatch, getState) => {
     try {
@@ -15,7 +16,7 @@ export const apply = (application) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.post('http://localhost:5000/api/applications', application, config);
+        const { data } = await axios.post(`${baseURL}/applications`, application, config);
 
         dispatch({
             type: 'APPLICATION_CREATE_SUCCESS',
@@ -46,7 +47,7 @@ export const checkApplication = (userId, job) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.get(`http://localhost:5000/api/applications?user=${userId}&job=${job}`, config);
+        const { data } = await axios.get(`${baseURL}/applications?user=${userId}&job=${job}`, config);
 
         dispatch({
             type: 'APPLICATION_DETAILS_SUCCESS',
@@ -75,7 +76,7 @@ export const listApplication = (userId) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.get(`http://localhost:5000/api/applications/${userId}`, config);
+        const { data } = await axios.get(`${baseURL}/applications/${userId}`, config);
 
         dispatch({
             type: 'APPLICATION_LIST_SUCCESS',
